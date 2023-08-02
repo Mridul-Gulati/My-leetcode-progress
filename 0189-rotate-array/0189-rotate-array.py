@@ -6,6 +6,8 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums in-place instead.
         """
         k = k%len(nums)
-        nums[:] = nums[::-1]
-        nums[k:] = nums[k:][::-1]
-        nums[:k] = nums[:k][::-1]
+        pivot = len(nums) - k
+        
+        nums[:] = nums[pivot:] + nums[:pivot]
+        
+        return nums

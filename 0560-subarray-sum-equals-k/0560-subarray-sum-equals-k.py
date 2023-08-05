@@ -5,15 +5,16 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        result = 0 
-        prefix_sum = 0
-        d = {0 : 1}
-        for num in nums:
-            prefix_sum = prefix_sum + num
-            if prefix_sum - k in d:
-                result = result + d[prefix_sum - k]
-            if prefix_sum not in d:
-                d[prefix_sum] = 1
+        d = {0:1}
+        sum_num = 0
+        count = 0
+        for i in range(len(nums)):
+            sum_num += nums[i]
+            rem = sum_num - k
+            if rem in d:
+                count+=d[rem]
+            if sum_num not in d:
+                d[sum_num] = 1
             else:
-                d[prefix_sum] = d[prefix_sum] + 1
-        return result
+                d[sum_num] += 1
+        return count
